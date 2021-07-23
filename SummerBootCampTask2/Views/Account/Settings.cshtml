@@ -1,0 +1,50 @@
+﻿@model SummerBootCampTask2.Models.SettingsViewModel
+
+<h2>Settings page</h2>
+
+<form asp-action="Settings" asp-controller="Account">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div>
+            <div class="form-group">
+                <label asp-for="UserName">Enter your new UserName</label>
+                <input type="text" asp-for="UserName" value="@Model.UserName" />
+                <span asp-validation-for="UserName" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email">Enter your new Email</label>
+                <input type="text" asp-for="Email" value="@Model.Email" />
+                <span asp-validation-for="Email" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Password">Enter your new Password</label>
+                <input asp-for="Password" />
+                <span asp-validation-for="Password" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword">Enter ConfirmPassword</label>
+                <input asp-for="ConfirmPassword" />
+                <span asp-validation-for="ConfirmPassword" />
+            </div>
+            <div class="form-group">
+                <label asp-for="IsVisible">Profile is visible?</label>
+                <input asp-for="IsVisible" type="checkbox"/>
+                <span asp-validation-for="IsVisible"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-outline-dark" />
+            </div>
+        </div>
+    }
+    else
+    {
+        <h2>Для настройки аккаунта вы должны войти в него</h2>
+    }
+</form>
+
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SummerBootCampTask2.CoreModels.User>
+
+    <form method="get" asp-action="Index">
+        <p>
+            <input type="search" placeholder="Enter Identifier" value="@ViewData["GetUserDeatails"]" name="searchedUser" style="width:500px" />
+            <input type="submit" value="Search" class="btn btn-primary" />
+            <a asp-action="Index">Get All Users</a>
+        </p>
+    </form>
+
+<h1>Users</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-controller="Chat" asp-action="Index" asp-route-id="@item.Id">Chat</a>
+            </td>
+        </tr>
+    }
+</table>
